@@ -1,0 +1,27 @@
+// this bit of complexity is to pull down the main build script from the alclabs maven repository
+// and then apply it.
+configurations { gradleScript }
+repositories { maven { url 'http://repo.alcshare.com'} }
+dependencies { gradleScript group: 'com.alcshare', name: 'addon-gradle', ext: 'gradle', version: '1.7' }
+apply from: configurations.gradleScript.resolve().iterator().next()
+
+
+
+info {
+  name = 'Hello, world!'
+  description = 'Starting point for many add-ons'
+  version = '1.0'
+  vendor = ''
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+   compile 'jstl:jstl:1.1.2'
+   compile 'taglibs:standard:1.1.2'
+
+   testCompile 'junit:junit:3.8.1'
+
+   providedCompile 'javax.servlet:servlet-api:2.5'
+}
